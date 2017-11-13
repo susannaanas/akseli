@@ -229,7 +229,7 @@ arrowleft > svg, arrowright > svg {
 	height:100px;
 }
 
-navigationbubbles {
+navigationbubbles, action {
 	position:absolute;
 	bottom:0;
 	display:flex;
