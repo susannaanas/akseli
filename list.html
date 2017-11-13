@@ -2,39 +2,35 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <style>
-            table {
-                border-collapse: collapse;
-                border: 2px black solid;
-                font: 12px sans-serif;
-            }
-
-            td {
-                border: 1px black solid;
-                padding: 5px;
-            }
-        </style>
     </head>
     <body>
-        <script src="http://d3js.org/d3.v3.min.js?v=3.2.8""></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
         <!-- script src="d3.min.js?v=3.2.8"></script -->
 
         <script type="text/javascript"charset="utf-8">
-            d3.text("akselidata.csv", function(data) {
-                var parsedCSV = d3.csv.parseRows(data);
+d3.text("auto_mpg_tmp.csv", function(datasetText) {
 
-                var container = d3.select("body")
-                    .append("table")
+var parsedCSV = d3.csv.parseRows(datasetText);
 
-                    .selectAll("tr")
-                        .data(parsedCSV).enter()
-                        .append("tr")
+var sampleHTML = d3.select("#viz")
+    .append("table")
+    .style("border-collapse", "collapse")
+    .style("border", "2px black solid")
 
-                    .selectAll("td")
-                        .data(function(d) { return d; }).enter()
-                        .append("td")
-                        .text(function(d) { return d; });
-            });
+    .selectAll("tr")
+    .data(parsedCSV)
+    .enter().append("tr")
+
+    .selectAll("td")
+    .data(function(d){return d;})
+    .enter().append("td")
+    .style("border", "1px black solid")
+    .style("padding", "5px")
+    .on("mouseover", function(){d3.select(this).style("background-color", "aliceblue")})
+    .on("mouseout", function(){d3.select(this).style("background-color", "white")})
+    .text(function(d){return d;})
+    .style("font-size", "12px");
+});
         </script>
     </body>
 </html>
